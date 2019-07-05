@@ -1,0 +1,72 @@
+<!--pages/orderProgress/orderProgress.wxml-->
+<view class="main">
+  <view class="top_progress">
+    <view class="firstbox">
+      <view class="firstbox_time">
+        <view class="time_date">2019-07-02 10:10</view>
+        <view class="time_wait">已等待2天</view>
+      </view>
+      <view></view>
+    </view>
+
+    <view class="secondbox">
+      <view class="avatar_nickname">
+        <view class="avatar">
+          <image src="../images/avatar.png"></image>
+        </view>
+        <view class="nickname">QQZ</view>
+      </view>
+      <view class="shop">
+        <view class="shop_name">
+          <text class="shopName">黛珂紫苏水300ml*1</text>
+          <text class="buy">买到</text>
+        </view>
+        <view class="shop_name">
+          <text class="shopName">黛珂紫苏水300ml*1</text>
+          <text class="unbuy">未买到</text>
+        </view>
+        <view class="shop_name">
+          <text class="shopName">黛珂紫苏水300ml*1</text>
+          <text class="buy">买到</text>
+        </view>
+
+        <view class="shop_btn" bindtap='show'>
+          <view wx:if="{{status}}" class="shop_btn1">
+            点击展开
+            <image src="../images/showIcon.png" style="width:26rpx;height:28rpx"></image>
+          </view>
+          <view wx:else>
+            <view class="shop_name">
+              <text class="shopName">黛珂紫苏水300ml*1</text>
+              <text class="unbuy">未买到</text>
+            </view>
+            <view class="shop_name">
+              <text class="shopName">黛珂紫苏水300ml*1</text>
+              <text class="buy">买到</text>
+            </view>
+            <view class="shop_btn1">
+              收起
+              <image src="../images/hidden.png" style="width:26rpx;height:28rpx"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom_progress">
+    <view class="third_shop" wx:for="{{list}}" wx:key="{{index}}">
+      <view class="shop_name">
+        <view class="progress_time firstbox_time">2019-07-02 18:10</view>
+        <view class="progress_time">黛珂紫苏水300ml*1已买到</view>
+      </view>
+      <view class="shop_picture">
+        <image class="img" src="../images/avatar.png"></image>
+      </view>
+    </view>
+    <view class="progress_over" bindtap="btnclick">
+      采购结束
+    </view>
+  </view>
+</view>
+

@@ -1,0 +1,51 @@
+<view class="main" wx:for="{{list}}" wx:key="{{index}}">
+  <view class="firstbox">
+    <view class="firstbox_time">
+      <view class="time_date">2019-07-02 10:10</view>
+      <view class="time_wait">已等待2天</view>
+    </view>
+    <view class="btn_order">
+      接单
+    </view>
+  </view>
+  <view class="secondbox">
+    <view class="avatar_nickname">
+      <view class="avatar">
+        <image src="../images/avatar.png"></image>
+      </view>
+      <view class="nickname">QQZ</view>
+    </view>
+    <view class="shop">
+      <view class="shop_name">
+        黛珂紫苏水300ml*1
+      </view>
+      <view class="shop_name">
+        黛珂紫苏水300ml*1
+      </view>
+      <view class="shop_name">
+        黛珂紫苏水300ml*1
+      </view>
+      <view class="shop_btn" bindtap='show'>
+        <view wx:if="{{status}}" class="shop_btn1">
+          点击展开
+          <image src="../images/showIcon.png" style="width:26rpx;height:28rpx"></image>
+        </view>
+        <view wx:else>
+          <view class="shop_name">
+            黛珂紫苏水300ml*1
+          </view>
+          <view class="shop_name">
+            黛珂紫苏水300ml*1
+          </view>
+          <view class="shop_btn1">
+            收起
+            <image src="../images/hidden.png" style="width:26rpx;height:28rpx"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="btn_detail" bindtap='showDetail'>
+      >
+    </view>
+  </view>
+</view>

@@ -1,0 +1,92 @@
+/* pages/orderReceived/orderReceived.wxss */
+page{
+  background: #F5F5F5;
+}
+.main{
+  background: #fff;
+  padding-top:20rpx;
+  margin-top:20rpx;
+  margin-bottom:20rpx; 
+}
+.main:first-child{
+  margin-top:0rpx
+}
+.main:last-child{
+  margin-bottom:50rpx
+}
+
+.firstbox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 35rpx;
+  margin:0 30rpx;
+}
+.firstbox_time{
+  color: #FFA546;
+}
+
+.btn_order{
+  width: 160rpx;
+  height: 60rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 60rpx;
+  background: -webkit-linear-gradient(left, #6D74F2 , #ABB0FE); 
+  border-radius: 10rpx;
+}
+
+.secondbox{
+  margin-top:10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin:0 30rpx;
+  padding-bottom: 50rpx; 
+}
+.avatar_nickname{
+  text-align: center;
+}
+.avatar{
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+}
+image{
+  width: 100%;
+  height: 100%
+}
+
+.shop{
+  font-size: 35rpx;
+  position: relative;
+}
+.shop_name{
+  margin-top:25rpx;
+}
+.shop_name1{
+  margin-top:15rpx;
+}
+.shopName{
+  margin-right:180rpx;
+}
+.unbuy{
+  position: absolute;
+  right: 0 
+}
+.buy{
+  position: absolute;
+  right: 0 ;
+  color:#8188FA;
+}
+
+.shop_btn1{
+  color:#8188FA;
+}
+.btn_detail{
+  color: #767DFA;
+  font-size: 65rpx;
+}
+

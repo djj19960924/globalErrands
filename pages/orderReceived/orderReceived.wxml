@@ -1,0 +1,38 @@
+<!--pages/orderReceived/orderReceived.wxml-->
+<view class="main" wx:for="{{list}}"  wx:key="{{index}}">
+  <view class="firstbox">
+    <view class="firstbox_time">
+      <view class="time_date">2019-07-02 10:10</view>
+      <view class="time_wait">已等待2天</view>
+    </view>
+    <view class="btn_order">
+      采购完结
+    </view>
+  </view>
+  <view class="secondbox">
+    <view class="avatar_nickname">
+      <view class="avatar">
+        <image src="../images/avatar.png"></image>
+      </view>
+      <view class="nickname">QQZ</view>
+    </view>
+    <view class="shop">
+      <view class="shop_name">
+        <text class="shopName">黛珂紫苏水300ml*1</text>
+        <text class="buy">买到</text>
+      </view>
+      <view class="shop_name">
+        <text class="shopName">黛珂紫苏水300ml*1</text>
+        <text class="unbuy">未买到</text>
+      </view>
+      <view class="shop_name">
+        <text class="shopName">黛珂紫苏水300ml*1</text>
+        <text class="buy">买到</text>
+      </view>
+      <view class="shop_name1">
+        <text class="shopName">......</text>
+        <text class="buy">点击进入详情></text>
+      </view>
+    </view>
+  </view>
+</view>

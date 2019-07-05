@@ -1,0 +1,65 @@
+page{
+  background: -webkit-linear-gradient(#909DF8, #989AFB);
+}
+.main{
+  text-align: center
+}
+.topTitle{
+  font-size:92rpx;
+  color: #fff;
+  font-weight:100rpx;
+}
+.font_space{
+  margin-right:10rpx;
+}
+.middleTitle{
+  font-size: 40rpx;
+  color: #fff;
+}
+image{
+  width:214px;
+  height: 218px;
+  margin-top:10rpx;
+}
+
+input{
+  border: 1px solid #B5B9FB;
+  width:500rpx;
+  height: 100rpx;
+  margin:0 auto;
+  background: #B5B9FB;
+  border-radius: 10rpx;
+  margin-bottom: 25rpx;
+  font-size: 36rpx; 
+}
+.input-login-text{
+  color:#fff;
+  font-size: 36rpx; 
+  margin-left: 20rpx;
+  text-align:left;
+}
+.bottom_text{
+  position: relative;
+  margin:0 auto 50rpx;
+  width: 500rpx;
+  height:50rpx;
+}
+.apply{
+  position:absolute;
+  right: 0;
+  color: #fff;
+  padding-bottom:4rpx; 
+  border-bottom:1px solid #fff;
+  margin-top:-5rpx;
+}
+.btn_login{
+  margin:0 auto;
+  color: #fff;
+  background: #FFA341;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 90rpx;
+  width:470rpx;
+  height: 90rpx;
+  border-radius: 10rpx;
+}

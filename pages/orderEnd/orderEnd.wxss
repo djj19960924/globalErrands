@@ -1,0 +1,101 @@
+/* pages/orderEnd/orderEnd.wxss */
+page{
+  background: #fff;
+}
+.main{
+  margin-top:20rpx ;
+}
+.top_bg{
+  margin: 0 20rpx;
+  height: 260rpx;
+  background: -webkit-linear-gradient(#909DF8, #989BFB);
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.top_text{
+  color: #fff;
+  font-size:36rpx;
+  line-height: 70rpx;
+}
+.top_img{
+  height: 260rpx;
+  width: 342rpx;
+  position: relative;
+}
+.img{
+  height: 250rpx;
+  width: 342rpx;
+  vertical-align: bottom;
+  display: table-cell;
+  position: absolute;
+  bottom: 0
+}
+
+.content{
+  margin:20rpx 20rpx; 
+}
+
+.firstbox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 35rpx;
+  margin:0 30rpx;
+}
+.firstbox_time{
+  color: #FFA546;
+}
+
+.btn_order{
+  width: 160rpx;
+  height: 60rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 60rpx;
+  background: -webkit-linear-gradient(left, #6D74F2 , #ABB0FE); 
+  border-radius: 10rpx;
+}
+.content:last-child{
+  margin-bottom: 80rpx; 
+}
+.second{
+  margin:0 30rpx;
+  border-bottom: 1px solid #F3F3F6
+}
+.secondbox{
+  margin-top:10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right:150rpx;
+  padding-bottom: 50rpx; 
+}
+.avatar_nickname{
+  text-align: center;
+}
+.avatar{
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+}
+image{
+  width: 100%;
+  height: 100%
+}
+
+.shop{
+  font-size: 35rpx
+}
+.shop_name{
+  margin-top:25rpx;
+}
+.shop_btn1{
+  margin-top:25rpx;
+  color:#8188FA;
+}
+
+
