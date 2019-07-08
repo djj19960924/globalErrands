@@ -13,6 +13,11 @@ Page({
   onLoad: function (options) {
 
   },
+  detail: function () {
+    wx:wx.navigateTo({
+      url: '../orderProgress/orderProgress',
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

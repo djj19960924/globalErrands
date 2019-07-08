@@ -31,7 +31,7 @@
       </view>
       <view class="shop_name1">
         <text class="shopName">......</text>
-        <text class="buy">点击进入详情></text>
+        <text class="buy" bindtap='detail'>点击进入详情></text>
       </view>
     </view>
   </view>

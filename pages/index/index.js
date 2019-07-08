@@ -7,7 +7,7 @@ Page({
     
   },
   login: function () {
-    wx.navigateTo({
+    wx.switchTab({
       url: '../waitOrder/waitOrder',
     })
   },

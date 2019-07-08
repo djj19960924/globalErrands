@@ -12,5 +12,29 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black"
   },
+  "tabBar":{
+    "selectedColor": "#979AFB",
+    "borderStyle": "white",
+    "list":[
+      {
+        "pagePath":"pages/waitOrder/waitOrder",
+        "iconPath": "pages/images/waitOrder.png",
+        "selectedIconPath": "pages/images/waitOrderSelect.png",
+        "text": "待接单"
+      },
+      {
+        "pagePath": "pages/orderReceived/orderReceived",
+        "iconPath": "pages/images/orderReceived.png",
+        "selectedIconPath": "pages/images/orderReceivedSelect.png",
+        "text": "已接单"
+      },
+      {
+        "pagePath": "pages/orderEnd/orderEnd",
+        "iconPath": "pages/images/orderEnd.png",
+        "selectedIconPath": "pages/images/orderEndSelect.png",
+        "text": "采购结束"
+      }
+    ]
+  },
   "sitemapLocation": "sitemap.json"
 }
