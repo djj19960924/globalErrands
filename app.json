@@ -1,23 +1,28 @@
 {
   "pages": [
+    "pages/waitOrder/waitOrder",
     "pages/index/index",
+    "pages/evaluate/evaluate",
+    
     "pages/orderProgress/orderProgress",
     "pages/orderEnd/orderEnd",
     "pages/orderReceived/orderReceived",
-    "pages/waitOrder/waitOrder",
-    "pages/showDetail/showDetail"
+    
+    "pages/showDetail/showDetail",
+    "components/Dialog/dialog"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black"
   },
-  "tabBar":{
+  "tabBar": {
     "selectedColor": "#979AFB",
     "borderStyle": "white",
-    "list":[
+    "list": [
       {
-        "pagePath":"pages/waitOrder/waitOrder",
+        "pagePath": "pages/waitOrder/waitOrder",
         "iconPath": "pages/images/waitOrder.png",
         "selectedIconPath": "pages/images/waitOrderSelect.png",
         "text": "待接单"

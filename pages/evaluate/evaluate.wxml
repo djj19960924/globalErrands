@@ -1,0 +1,16 @@
+<!--pages/evaluate/evaluate.wxml-->
+<view>
+  <view class="top">
+    <view class="top_text">采购清单：</view>
+    <view class="top_text" wx:for="{{orderList}}" wx:key="{{index}}">
+      {{item.name}}
+    </view>
+    <view class="remark">
+      <view>您对本次服务的评价：</view>
+    </view>
+  </view>
+
+  <view class="progress">
+    
+  </view>
+</view>

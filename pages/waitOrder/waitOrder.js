@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list:[1,1,1],
+    list:[1,1],
     status:true
   },
 

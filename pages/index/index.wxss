@@ -24,19 +24,22 @@ image{
 
 input{
   border: 1px solid #B5B9FB;
-  width:500rpx;
+  width:460rpx;
   height: 100rpx;
   margin:0 auto;
   background: #B5B9FB;
   border-radius: 10rpx;
   margin-bottom: 25rpx;
   font-size: 36rpx; 
+  text-align: left;
+  padding:0 20rpx; 
 }
 .input-login-text{
   color:#fff;
   font-size: 36rpx; 
-  margin-left: 20rpx;
   text-align:left;
+  margin-right:20rpx;
+  letter-spacing: 10rpx;
 }
 .bottom_text{
   position: relative;

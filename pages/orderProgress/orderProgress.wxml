@@ -18,7 +18,7 @@
       </view>
       <view class="shop">
         <view class="shop_name">
-          <text class="shopName">黛珂紫苏水300ml*1</text>
+          <text class="shopName">黛珂紫苏水300ml*111111111111111111111111111111111111111111</text>
           <text class="buy">买到</text>
         </view>
         <view class="shop_name">
@@ -37,7 +37,7 @@
           </view>
           <view wx:else>
             <view class="shop_name">
-              <text class="shopName">黛珂紫苏水300ml*1</text>
+              <text class="shopName">黛珂紫苏水300ml*1111111111111111111111111111</text>
               <text class="unbuy">未买到</text>
             </view>
             <view class="shop_name">

@@ -36,42 +36,84 @@ page{
 }
 
 .secondbox{
-  margin-top:10rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin:0 30rpx;
-  padding-bottom: 50rpx; 
+  margin:30rpx;
 }
 .avatar_nickname{
   text-align: center;
 }
 .avatar{
-  width: 130rpx;
+  width: 260rpx;
   height: 130rpx;
-  border-radius: 50%;
   overflow: hidden;
   margin-bottom: 10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center
 }
 image{
-  width: 100%;
-  height: 100%
+  border-radius: 50%;
+  width: 130rpx;
+  height: 130rpx
+}
+.thirdbox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin:30rpx 30rpx 0;
+  flex-direction: row;
+}
+.shop{
+  width: 550rpx;
+  font-size: 35rpx;
+}
+.shop_name:first-child{
+  margin-top:0;
 }
 
-.shop{
-  font-size: 35rpx
-}
 .shop_name{
+  width:100%;
+  line-height: 1.5;
   margin-top:25rpx;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .shop_btn1{
   margin-top:25rpx;
+  font-size: 35rpx;
   color:#8188FA;
+  
 }
-
 .btn_detail{
   color: #767DFA;
-  font-size: 65rpx;
+  font-size: 60rpx;
+  margin-left: 160rpx;
 }
 
+.fourthbox{
+  padding-bottom: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  /*  */
+}
+
+.show1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300rpx;
+}
+.showImg{
+  width: 26rpx;
+  height: 28rpx;
+  padding-top: 30rpx;
+  margin-left: 10rpx;
+}

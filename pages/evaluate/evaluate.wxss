@@ -1,0 +1,13 @@
+/* pages/evaluate/evaluate.wxss */
+page{
+  background: #F5F5F5;
+}
+
+.top{
+  background: #93A1F8;
+  width: 100%;
+  padding: 20rpx 15rpx;
+  margin-bottom:10rpx ;
+  color: #fff;
+  font-size:35rpx;
+}

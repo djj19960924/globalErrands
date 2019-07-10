@@ -12,8 +12,8 @@
 
   <input type='text' placeholder='账号' placeholder-class='input-login-text'></input>
   <input type='password' placeholder='密码' placeholder-class='input-login-text'></input>
- 
-  <view class="bottom_text">
+  
+  <view class="bottom_text" bindtap="showDialog">
     <span class="apply">申请买家入住</span>
   </view>
 
@@ -21,3 +21,15 @@
     立即登录
   </view>
 </view>
+
+<view class="container" >
+    <dialog id='dialog' 
+      title='请输入买到情况' 
+      content='+' 
+      cancelText='取消' 
+      confirm='确认提交'
+      bind:cancelEvent="_cancelEvent"  
+      bind:confirmEvent="_confirmEvent">
+    </dialog>
+</view>
+
