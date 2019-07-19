@@ -5,7 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [1, 1, 1],
+    list: [
+      { 
+        shopList: [{ name: '黛珂紫苏水300ml*1' }, { name: '黛珂紫苏水300ml*1' }, { name: '黛珂紫苏水300ml*1' }, { name: '黛珂紫苏水300ml*1' }] ,
+        waitTime : 2,
+        orderTime : '2019-07-02 10:10',
+        avatarImg : "../images/avatar.png",
+        nikeName : "Q***Q"
+      },
+      { 
+        shopList: [{ name: '黛珂紫苏水300ml*1' }, { name: '黛珂紫苏水300ml*1' }],
+        waitTime: 2,
+        orderTime: '2019-07-02 10:10',
+        avatarImg: "../images/avatar.png",
+        nikeName: "Q***Q"
+      }
+    ],
+    hiddenShopList:[],
     status: true
   },
 
@@ -20,7 +36,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var list = this.data.list
 
+    list.forEach(item=>{
+      let hiddenShopList = []
+      let shopList = []
+      if (item.shopList.length>3){
+        shopList = item.shopList.slice(0, 3)
+        hiddenShopList = item.shopList.slice(3)
+        this.setData({
+          hiddenShopList, shopList
+        })  
+      }
+    })
+    console.log(this.data.shopList)
+    console.log(this.data.hiddenShopList)
   },
 
   /**

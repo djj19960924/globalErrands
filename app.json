@@ -1,14 +1,16 @@
 {
   "pages": [
+    "pages/orderEnd/orderEnd",
+    "pages/showDetail/showDetail",
+    
+
+    "pages/orderReceived/orderReceived",
     "pages/waitOrder/waitOrder",
     "pages/index/index",
-    "pages/evaluate/evaluate",
-    
     "pages/orderProgress/orderProgress",
-    "pages/orderEnd/orderEnd",
-    "pages/orderReceived/orderReceived",
     
-    "pages/showDetail/showDetail",
+    
+    "pages/evaluate/evaluate",
     "components/Dialog/dialog"
     
   ],

@@ -5,7 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list:[1,1,1,1,1,1]
+    img: 'http://webmap0.bdimg.com/client/services/thumbnails?width=132&height=104&align=center,center&quality=100&src=http%3A%2F%2Fhiphotos.baidu.com%2Fspace%2Fpic%2Fitem%2F4afbfbedab64034ff0749211a7c379310a551d6f.jpg' ,
+    list:[
+      {
+        img:'http://webmap0.bdimg.com/client/services/thumbnails?width=132&height=104&align=center,center&quality=100&src=http%3A%2F%2Fhiphotos.baidu.com%2Fspace%2Fpic%2Fitem%2F4afbfbedab64034ff0749211a7c379310a551d6f.jpg'
+      },
+      {
+        img: 'http://webmap0.bdimg.com/client/services/thumbnails?width=132&height=104&align=center,center&quality=100&src=http%3A%2F%2Fhiphotos.baidu.com%2Fspace%2Fpic%2Fitem%2F4afbfbedab64034ff0749211a7c379310a551d6f.jpg'
+      }
+    ]
   },
 
   /**
@@ -13,6 +21,14 @@ Page({
    */
   onLoad: function (options) {
 
+  },
+
+  lookImg: function (e) {
+    var url = e.currentTarget.dataset.src
+    wx.previewImage({
+      current: url ,
+      urls: [url]
+    })
   },
 
   /**

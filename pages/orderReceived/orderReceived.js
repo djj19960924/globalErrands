@@ -6,6 +6,34 @@ Page({
    */
   data: {
     list: [1, 1, 1],
+    status: true
+  },
+
+  show: function () {
+    let status = !this.data.status
+    this.setData({
+      status
+    })
+  },
+
+  order: function () {
+    wx.showModal({
+      content: '本次所有商品已经和客服沟通,确定要结束采购流程嘛？',
+      success (res) {
+        if(res.confirm){
+          console.log('用户点击确认')
+        }else if(res.cancel){
+          console.log('用户点击取消')
+        }
+      }
+    })
+
+  },
+
+  showDetail: function () {
+    wx.navigateTo({
+      url: '../orderProgress/orderProgress',
+    })
   },
   /**
    * 生命周期函数--监听页面加载

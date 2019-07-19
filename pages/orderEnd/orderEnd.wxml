@@ -13,48 +13,60 @@
   <view class="content" wx:for="{{list}}" wx:key="{{index}}">
     <view class="firstbox">
       <view class="firstbox_time">
-        <view class="time_date">2019-07-02 10:10</view>
+        <view class="time_date">{{item.orderTime}}</view>
       </view>
-      <view class="firstbox_time time_wait">已等待2天</view>
+      <view class="firstbox_time time_wait">已等待{{item.waitTime}}天</view>
     </view>
     <view class="second">
       <view class="secondbox">
         <view class="avatar_nickname">
           <view class="avatar">
-            <image src="../images/avatar.png"></image>
-          </view>
-          <view class="nickname">QQZ</view>
-        </view>
-        <view class="shop">
-          <view class="shop_name">
-            黛珂紫苏水300ml*1
-          </view>
-          <view class="shop_name">
-            黛珂紫苏水300ml*1
-          </view>
-          <view class="shop_name">
-            黛珂紫苏水300ml*1
-          </view>
-          <view class="shop_btn" bindtap='show'>
-            <view wx:if="{{status}}" class="shop_btn1">
-              点击展开
-              <image src="../images/showIcon.png" style="width:26rpx;height:28rpx"></image>
-            </view>
-            <view wx:else>
-              <view class="shop_name">
-                黛珂紫苏水300ml*1
-              </view>
-              <view class="shop_name">
-                黛珂紫苏水300ml*1
-              </view>
-              <view class="shop_btn1">
-                收起
-                <image src="../images/hidden.png" style="width:26rpx;height:28rpx"></image>
-              </view>
-            </view>
+            <image src="{{item.avatarImg}}"></image>
+            <text class="nickname">{{item.nikeName}}</text>
           </view>
         </view>
       </view>
+      <view>
+      </view>
+      <view wx:if="{{item.shopList.length<3||item.shopList.length===3}}">
+        <view class="shop_unshow" wx:for="{{item.shopList}}" wx:key="{{index}}">
+          <view class="shop_name">
+            {{item.name}}
+          </view>
+        </view>
+      </view>
+
+      <view wx:else>
+        <view class="shop" wx:for="{{shopList}}" wx:key="{{index}}">
+          <view class="shop_name">
+            {{item.name}}
+          </view>
+        </view>
+
+        <view wx:if="{{!status}}" bindtap='show' class="shop_name" wx:for="{{hiddenShopList}}" wx:key="{{index}}">
+          <view class="shop_name">
+            <text>{{item.name}}</text>
+          </view>
+        </view>
+
+        <view class="fourthbox">
+          <view class="show1" bindtap='show' wx:if="{{status}}">
+            <view class="shop_btn1">
+              点击展开
+            </view>
+            <image class="showImg" src="../images/showIcon.png"></image>
+          </view>
+
+          <view class="show1" bindtap='show' wx:else>
+            <view class="shop_btn1">
+              收起
+            </view>
+            <image class="showImg" src="../images/hidden.png"></image>
+          </view>
+        </view>
+
+      </view>
+
     </view>
 
   </view>

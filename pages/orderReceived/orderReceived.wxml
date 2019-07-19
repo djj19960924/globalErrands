@@ -3,36 +3,82 @@
   <view class="firstbox">
     <view class="firstbox_time">
       <view class="time_date">2019-07-02 10:10</view>
-      <view class="time_wait">已等待2天</view>
+
     </view>
-    <view class="btn_order">
-      采购完结
-    </view>
+    <view class="firstbox_time time_wait">已等待2天</view>
   </view>
+
   <view class="secondbox">
     <view class="avatar_nickname">
       <view class="avatar">
         <image src="../images/avatar.png"></image>
+        <text class="avatarText">QQQ</text>
       </view>
-      <view class="nickname">QQZ</view>
     </view>
-    <view class="shop">
-      <view class="shop_name">
-        <text class="shopName">黛珂紫苏水300ml*1</text>
-        <text class="buy">买到</text>
-      </view>
-      <view class="shop_name">
-        <text class="shopName">黛珂紫苏水300ml*1</text>
-        <text class="unbuy">未买到</text>
-      </view>
-      <view class="shop_name">
-        <text class="shopName">黛珂紫苏水300ml*1</text>
-        <text class="buy">买到</text>
-      </view>
-      <view class="shop_name1">
-        <text class="shopName">......</text>
-        <text class="buy" bindtap='detail'>点击进入详情></text>
-      </view>
+    <view class="btn_order" bindtap="order">
+      采购完结
     </view>
   </view>
+
+  <view class="thirdbox">
+    <view class="thirdbox-main">
+      <view class="shop">
+        <view class="shop_name">
+          <text>黛珂紫苏水300ml*1</text>
+        </view>
+        <view class="shop-unbuy">
+          <text>买到</text>
+        </view>
+      </view>
+      <view class="shop">
+        <view class="shop_name">
+          <text>黛珂紫苏水300ml*1</text>
+        </view>
+        <view class="shop-unbuy">
+          <text>买到</text>
+        </view>
+      </view>
+      <view class="shop">
+        <view class="shop_name">
+          <text>黛珂紫苏水300ml*1</text>
+        </view>
+        <view class="shop-buy">
+          <text>已买到</text>
+        </view>
+      </view>
+
+      <view wx:if="{{!status}}" bindtap='show' class="shop">
+        <view class="shop">
+          <view class="shop_name">
+            <text>黛珂紫苏水300ml*1</text>
+          </view>
+          <view class="shop-unbuy">
+            <text>买到</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="btn_detail" bindtap='showDetail'>
+      >
+    </view>
+  </view>
+
+  <view class="fourthbox">
+    <view class="show1" bindtap='show' wx:if="{{status}}">
+      <view class="shop_btn1">
+        点击展开
+      </view>
+      <image class="showImg" src="../images/showIcon.png"></image>
+    </view>
+
+    <view class="show1" bindtap='show' wx:else>
+      <view class="shop_btn1">
+        收起
+      </view>
+      <image class="showImg" src="../images/hidden.png"></image>
+    </view>
+
+  </view>
+
+
 </view>
