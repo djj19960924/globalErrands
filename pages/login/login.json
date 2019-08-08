@@ -1,7 +1,4 @@
 { 
-  "usingComponents": {
-    "dialog": "/components/Dialog/dialog"
-  },
   "backgroundTextStyle": "light",
   "navigationBarBackgroundColor": "#909DF8",
   "navigationBarTextStyle": "black"

@@ -7,12 +7,25 @@ Page({
   data: {
     list: [1, 1, 1],
     status: true,
+    isbtn:false
   },
   show: function () {
     let status = !this.data.status
     this.setData({
       status
     })
+  },
+  btnclick(){
+    this.setData({
+      isbtn:true
+    })
+  },
+
+  onImageClose: function () {
+    this.setData({
+      isbtn: false
+    });
+    // wx.showTabBar();
   },
 
   /**

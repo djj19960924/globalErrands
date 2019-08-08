@@ -1,56 +1,32 @@
 // pages/orderEnd/orderEnd.js
+const cfg = require('../../cfg.js');
+const utils = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [
-      { 
-        shopList: [{ name: '黛珂紫苏水300ml*1' }, { name: '黛珂紫苏水300ml*1' }, { name: '黛珂紫苏水300ml*1' }, { name: '黛珂紫苏水300ml*1' }] ,
-        waitTime : 2,
-        orderTime : '2019-07-02 10:10',
-        avatarImg : "../images/avatar.png",
-        nikeName : "Q***Q"
-      },
-      { 
-        shopList: [{ name: '黛珂紫苏水300ml*1' }, { name: '黛珂紫苏水300ml*1' }],
-        waitTime: 2,
-        orderTime: '2019-07-02 10:10',
-        avatarImg: "../images/avatar.png",
-        nikeName: "Q***Q"
-      }
-    ],
-    hiddenShopList:[],
-    status: true
+    orderEndList:[],
+    hiddenOrderEndList:[],
   },
 
-  show: function () {
-    let status = !this.data.status
+  show: function (e) {
+    console.log(e)
+    var id = e.currentTarget.id
+    var orderEndList = this.data.orderEndList
+    orderEndList[id].status = !orderEndList[id].status
     this.setData({
-      status
+      orderEndList
     })
+    console.log('11:', this.data.orderEndList)
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var list = this.data.list
-
-    list.forEach(item=>{
-      let hiddenShopList = []
-      let shopList = []
-      if (item.shopList.length>3){
-        shopList = item.shopList.slice(0, 3)
-        hiddenShopList = item.shopList.slice(3)
-        this.setData({
-          hiddenShopList, shopList
-        })  
-      }
-    })
-    console.log(this.data.shopList)
-    console.log(this.data.hiddenShopList)
+    getWaitOrderList.call(this)
   },
 
   /**
@@ -102,3 +78,40 @@ Page({
 
   }
 })
+
+//获取采购结束列表
+function getWaitOrderList() {
+  var that = this;
+  wx.request({
+    url: cfg.localUrl + 'legworkBuyer/queryLegworkOrder',
+    method: 'POST',
+    data: {
+      isEnd: 2
+    },
+    success: (res) => {
+     
+      if (res.data.status === 10000) {
+        var orderEndList = res.data.data;
+        var hiddenOrderEndList = []
+        var openList = []
+        orderEndList.forEach(element => {
+          element.status = true
+          element.createTime = utils.formatDateNoSecond(element.createTime);
+          if (element.nickName) {
+            element.nickName = element.nickName.substring(0, 1) + '**' + element.nickName.substring(element.nickName.length - 2, element.nickName.length - 1)
+          } else {
+            element.nickName = "***"
+          }
+          if (element.itemList.length > 5) {
+            element.openList = element.itemList.slice(0, 5)
+            element.hiddenOrderEndList = element.itemList.slice(5)
+          }
+        })
+        that.setData({
+          orderEndList: orderEndList
+        })
+        console.log('orderEndList:', that.data.orderEndList)
+      }
+    }
+  })
+}

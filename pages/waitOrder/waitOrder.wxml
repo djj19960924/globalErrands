@@ -1,64 +1,62 @@
-<view class="main" wx:for="{{list}}" wx:key="{{index}}">
+<view class="main" wx:for="{{waitOrderList}}" wx:key="{{index}}" wx:for-item="waitOrder">
   <view class="firstbox">
     <view class="firstbox_time">
-      <view class="time_date">2019-07-02 10:10</view>
+      <view class="time_date">{{waitOrder.createTime}}</view>
       
     </view>
-    <view class="firstbox_time time_wait">已等待2天</view>
+    <view class="firstbox_time time_wait">已等待{{waitOrder.waitTime}}天</view>
     
   </view>
   <view class="secondbox">
     <view class="avatar_nickname">
       <view class="avatar">
-        <image src="../images/avatar.png"></image>
-        <text class="avatarText">QQQ</text>
+        <image src="{{waitOrder.headImgurl}}"></image>
+        <text class="avatarText">{{waitOrder.nickName}}</text>
       </view>
     </view>
-    <view class="btn_order">
+    <view class="btn_order" id="{{index}}" bindtap="orders">
       接单
     </view>
   </view>
 
-  <view class="thirdbox">
-    <view class="shop">
-      <view class="shop_name">
-        <text>HERMES爱马仕琥珀橘彩星光女士香水50ml*1</text>
-      </view>
-      <view class="shop_name">
-        <text>黛珂紫苏水300ml*1</text>
-      </view>
-      <view class="shop_name">
-        <text>黛珂紫苏水300ml*1</text>
-      </view>
-      <view class="shop_name">
-        <text>黛珂紫苏水300ml*1</text>
-      </view>
-      <view class="shop_name">
-        <text>黛珂紫苏水300ml*1</text>
-      </view>
-      <view wx:if="{{!status}}" bindtap='show' class="shop_name">
-        <view class="shop_name">
-          <text>黛珂紫苏水300ml*1</text>
-        </view>
-        <view class="shop_name">
-          <text>黛珂紫苏水300ml*1</text>
-        </view>
+  <view class="thirdbox hiddenShop" wx:if="{{waitOrder.itemList.length<5||waitOrder.itemList.length===5}}">
+    <view class="shop " >
+      <view class="shop_name" wx:for="{{waitOrder.itemList}}" wx:for-item="itemList" wx:key="{{index}}">
+        <text>{{itemList.productName?itemList.productName:'无'}}</text>
       </view>
     </view>
-    <view class="btn_detail" bindtap='showDetail'>
+    <view class="btn_detail" bindtap='showDetail' id="{{index}}">
       >
     </view>
   </view>
 
-  <view class="fourthbox">
-    <view class="show1" bindtap='show' wx:if="{{status}}">
+  <view class="thirdbox" wx:else>
+    <view class="shop" >
+      <view class="shop_name" wx:for="{{waitOrder.openList}}" wx:for-item="itemList" wx:key="{{index}}">
+        <text>{{itemList.productName}}</text>
+      </view>
+
+      <view wx:if="{{!waitOrder.status}}" wx:for="{{waitOrder.hiddenWaitOrderList}}" wx:key="{{index}}" wx:for-item="hiddenList" class="shop_name">
+        <view class="shop_name">
+          <text>{{hiddenList.productName}}</text>
+        </view>
+        
+      </view>
+    </view>
+    <view class="btn_detail" bindtap='showDetail' id="{{index}}">
+      >
+    </view>
+  </view>
+
+  <view class="fourthbox" wx:if="{{waitOrder.itemList.length>5}}">
+    <view class="show1" bindtap='show' id="{{index}}" wx:if="{{waitOrder.status}}">
       <view class="shop_btn1" >
         点击展开
       </view>
       <image class="showImg" src="../images/showIcon.png"></image>
     </view>
-
-    <view class="show1" bindtap='show' wx:else>
+ 
+    <view class="show1" bindtap='show' id="{{index}}" wx:else>
       <view class="shop_btn1" >
         收起
       </view>

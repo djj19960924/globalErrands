@@ -90,4 +90,33 @@
       采购结束
     </view>
   </view>
+
+
+  <view wx:if='{{isbtn}}' class='addTips' catchtouchmove='preventTouchMove'>
+    <view class='mask' />
+    <view class="tips">
+      <view class="tips-top">
+        填写进度
+      </view>
+      <view class="tip-img">
+        <view class="star">*</view>
+        <view class="tip-imgUpdate">
+          <image src="../images/addImg.png"></image>
+          <view class="tip-updateText">
+            (上传图片)
+          </view>
+        </view>
+        
+      </view>
+
+      <view class="tip-content">
+        <textarea placeholder="请输入买到情况"></textarea>
+      </view>
+      <view class="tip-btn">
+        <view class="tip-cancel">取消</view>
+        <view class="tip-sumbit">确认提交</view>
+      </view>
+    </view>
+    
+  </view>
 </view>

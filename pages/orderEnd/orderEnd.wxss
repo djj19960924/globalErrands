@@ -111,8 +111,17 @@ image{
   margin-top:20rpx;
   font-size: 30rpx;
   width:100%;
-  line-height: 1.5;
   word-break:break-all;
+  line-height: 1.7;
+  text-overflow:ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+ 
+}
+.open{
+  margin-top:10rpx;
 }
 .shop_btn1{
   margin-top:25rpx;

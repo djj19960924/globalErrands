@@ -1,26 +1,42 @@
 // pages/showDetail/showDetail.js
+const cfg = require('../../cfg.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    img: 'http://webmap0.bdimg.com/client/services/thumbnails?width=132&height=104&align=center,center&quality=100&src=http%3A%2F%2Fhiphotos.baidu.com%2Fspace%2Fpic%2Fitem%2F4afbfbedab64034ff0749211a7c379310a551d6f.jpg' ,
-    list:[
-      {
-        img:'http://webmap0.bdimg.com/client/services/thumbnails?width=132&height=104&align=center,center&quality=100&src=http%3A%2F%2Fhiphotos.baidu.com%2Fspace%2Fpic%2Fitem%2F4afbfbedab64034ff0749211a7c379310a551d6f.jpg'
-      },
-      {
-        img: 'http://webmap0.bdimg.com/client/services/thumbnails?width=132&height=104&align=center,center&quality=100&src=http%3A%2F%2Fhiphotos.baidu.com%2Fspace%2Fpic%2Fitem%2F4afbfbedab64034ff0749211a7c379310a551d6f.jpg'
-      }
-    ]
+    waitOrderDetail:{},
+    buyerId:2
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const waitOrderDetail = wx.getStorageSync('waitOrderDetail')
+    this.setData({
+      waitOrderDetail
+    })
+  },
 
+  //买手接单
+  orders: function (e) {
+    var waitOrderDetail = this.data.waitOrderDetail
+    var { buyerId } = this.data
+    wx.showModal({
+      title: '提示',
+      content: '确认接单吗？接单后，请尽快安排采购哦',
+      success: (res) => {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          var legworkId = waitOrderDetail.id
+          buyerOrders.call(this, legworkId, buyerId)
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
 
   lookImg: function (e) {
@@ -80,3 +96,43 @@ Page({
 
   }
 })
+
+//买手接单
+function buyerOrders(legworkId, buyerId) {
+  console.log('this:', this)
+  var that = this;
+  wx.request({
+    url: cfg.localUrl + 'legworkBuyer/receiveLegworkOrder',
+    method: "post",
+    data: {
+      legworkId: legworkId,
+      buyerId: buyerId,
+      isEnd: 1
+    },
+    success: (res) => {
+      console.log('res:', res)
+      if (res.data.status === 10000) {
+        wx.switchTab({
+          url: '../waitOrder/waitOrder',
+          success: function (e) {
+            let page = getCurrentPages().pop();
+            if (page == undefined || page == null) return;
+            page.onLoad();
+          }
+        })
+        wx.showToast({
+          title: '接单成功',
+          icon: 'none'
+        })
+        
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '接单异常',
+        })
+      }
+
+    }
+  })
+
+}

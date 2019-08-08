@@ -57,8 +57,7 @@ input{
 }
 .btn_login{
   margin:0 auto;
-  color: #fff;
-  background: #FFA341;
+  
   font-size: 32rpx;
   text-align: center;
   line-height: 90rpx;
@@ -66,3 +65,8 @@ input{
   height: 90rpx;
   border-radius: 10rpx;
 }
+.btn_login button{
+  background: #FFA341;
+  color: #fff;
+}
+

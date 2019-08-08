@@ -1,18 +1,13 @@
 {
   "pages": [
-    "pages/orderEnd/orderEnd",
-    "pages/showDetail/showDetail",
-    
-
-    "pages/orderReceived/orderReceived",
     "pages/waitOrder/waitOrder",
-    "pages/index/index",
+    "pages/orderEnd/orderEnd",
+    
+    "pages/login/login",
     "pages/orderProgress/orderProgress",
-    
-    
-    "pages/evaluate/evaluate",
-    "components/Dialog/dialog"
-    
+    "pages/showDetail/showDetail",
+    "pages/orderReceived/orderReceived",
+    "pages/evaluate/evaluate"
   ],
   "window": {
     "backgroundTextStyle": "light",

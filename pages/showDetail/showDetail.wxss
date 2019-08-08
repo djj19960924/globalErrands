@@ -53,7 +53,7 @@ page{
 }
 
 .detail_shop{
-  margin: 0 50rpx; 
+  margin: 0 50rpx 20rpx; 
   display: flex;
   justify-content: space-between;
   align-items: center;

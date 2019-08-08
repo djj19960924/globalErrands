@@ -1,0 +1,24 @@
+<view class="main">
+  <view class="topTitle">
+    <span class="font_space">全</span><span class="font_space">球</span><span class="font_space">跑</span><span class="font_space">腿</span>
+  </view>
+  <view class="middleTitle">
+    <span class="font_space">买</span>
+    <span class="font_space">手</span>
+    <span class="font_space">端</span>
+  </view>
+  <image src="../images/logo.png"></image>
+  
+  <form bindsubmit='formSubmit'>
+    <input type='text' maxlength="11" placeholder='账号' placeholder-class='input-login-text' name="userName"></input>
+    <input type='password' maxlength="16" placeholder='密码' placeholder-class='input-login-text' name="passWord"></input>
+    
+    <view class="bottom_text" bindtap="showDialog">
+      <span class="apply">申请买家入住</span>
+    </view>
+
+    <view class="btn_login" bindtap='submit'>
+      <button form-type="submit">立即登录</button>
+    </view>
+  </form>
+</view>

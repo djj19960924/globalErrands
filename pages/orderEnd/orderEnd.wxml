@@ -10,65 +10,58 @@
     </view>
   </view>
 
-  <view class="content" wx:for="{{list}}" wx:key="{{index}}">
+  <view class="content" wx:for="{{orderEndList}}" wx:for-item="order" wx:key="{{index}}">
     <view class="firstbox">
       <view class="firstbox_time">
-        <view class="time_date">{{item.orderTime}}</view>
+        <view class="time_date">{{order.createTime}}</view>
       </view>
-      <view class="firstbox_time time_wait">已等待{{item.waitTime}}天</view>
+      <view class="firstbox_time time_wait">已等待{{order.waitTime}}天</view>
     </view>
     <view class="second">
       <view class="secondbox">
         <view class="avatar_nickname">
           <view class="avatar">
-            <image src="{{item.avatarImg}}"></image>
-            <text class="nickname">{{item.nikeName}}</text>
+            <image src="{{order.headImgurl}}"></image>
+            <text class="nickname">{{order.nickName}}</text>
           </view>
         </view>
       </view>
       <view>
       </view>
-      <view wx:if="{{item.shopList.length<3||item.shopList.length===3}}">
-        <view class="shop_unshow" wx:for="{{item.shopList}}" wx:key="{{index}}">
-          <view class="shop_name">
-            {{item.name}}
+      <view wx:if="{{order.itemList.length<5||order.itemList.length===5}}">
+        <view class="shop_unshow" wx:for="{{order.itemList}}" wx:for-item="itemList" wx:key="{{index}}">
+          <view class="shop_name" wx:if="item.itemList.length!==0">
+            {{itemList.productName?itemList.productName:'无'}}
           </view>
         </view>
       </view>
-
       <view wx:else>
-        <view class="shop" wx:for="{{shopList}}" wx:key="{{index}}">
+        <view class="shop" wx:for="{{order.openList}}" wx:key="{{index}}">
           <view class="shop_name">
-            {{item.name}}
+            {{item.productName}}
           </view>
         </view>
-
-        <view wx:if="{{!status}}" bindtap='show' class="shop_name" wx:for="{{hiddenShopList}}" wx:key="{{index}}">
+        <view wx:if="{{!order.status}}" wx:for="{{order.hiddenOrderEndList}}" wx:key="{{index}}" wx:for-item="hiddenList">
           <view class="shop_name">
-            <text>{{item.name}}</text>
+            <text>{{hiddenList.productName}}</text>
           </view>
         </view>
-
         <view class="fourthbox">
-          <view class="show1" bindtap='show' wx:if="{{status}}">
+          <view class="show1" bindtap='show' id="{{index}}" wx:if="{{order.status}}">
             <view class="shop_btn1">
               点击展开
             </view>
             <image class="showImg" src="../images/showIcon.png"></image>
           </view>
-
-          <view class="show1" bindtap='show' wx:else>
+          <view class="show1" bindtap='show' id="{{index}}" wx:else>
             <view class="shop_btn1">
               收起
             </view>
             <image class="showImg" src="../images/hidden.png"></image>
           </view>
+          
         </view>
-
       </view>
-
     </view>
-
   </view>
-
 </view>

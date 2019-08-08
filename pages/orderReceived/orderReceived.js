@@ -1,4 +1,6 @@
 // pages/orderReceived/orderReceived.js
+const cfg = require('../../cfg.js');
+const utils = require('../../utils/util.js')
 Page({
 
   /**
@@ -6,6 +8,7 @@ Page({
    */
   data: {
     list: [1, 1, 1],
+    orderReceivedList:[],
     status: true
   },
 
@@ -39,7 +42,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    getOrderReceivedList.call(this)
   },
   detail: function () {
     wx:wx.navigateTo({
@@ -96,3 +99,40 @@ Page({
 
   }
 })
+
+//获取已接单列表
+function getOrderReceivedList() {
+  var that = this;
+  wx.request({
+    url: cfg.localUrl + 'legworkBuyer/queryLegworkOrder',
+    method: 'POST',
+    data: {
+      isEnd: 1
+    },
+    success: (res) => {
+      if (res.data.status === 10000) {
+        var orderReceivedList = res.data.data;
+        var hiddenOrderReceivedList = []
+        var openList = []
+
+        orderReceivedList.forEach(element => {
+          element.status = true
+          element.createTime = utils.formatDateNoSecond(element.createTime);
+          if (element.nickName) {
+            element.nickName = element.nickName.substring(0, 1) + '**' + element.nickName.substring(element.nickName.length - 2, element.nickName.length - 1)
+          } else {
+            element.nickName = "**"
+          }
+          if (element.itemList.length > 5) {
+            element.openList = element.itemList.slice(0, 5)
+            element.hiddenOrderReceivedList = element.itemList.slice(5)
+          }
+        })
+        that.setData({
+          orderReceivedList: orderReceivedList
+        })
+        console.log('orderReceivedList:', that.data.orderReceivedList)
+      }
+    }
+  })
+}

@@ -1,28 +1,29 @@
 <!--pages/showDetail/showDetail.wxml-->
+
 <view class="main">
   <view class="detail_time">
-    <view class="time-date">2019-07-02 10:10</view>
-    <view class="time-day">已等待2天</view>
+    <view class="time-date">{{waitOrderDetail.createTime}}</view>
+    <view class="time-day">已等待{{waitOrderDetail.waitTime}}天</view>
   </view>
 
   <view class="detail_avatar">
     <view class="avatar_nickname">
       <view class="avatar">
-        <image src="../images/avatar.png" class="avatar_img"></image>
-        <text class="avatarText">QQQ</text>
+        <image src="{{waitOrderDetail.headImgurl}}" class="avatar_img"></image>
+        <text class="avatarText">{{waitOrderDetail.nickName}}</text>
       </view>
     </view>
-    <view class="btn_order">
+    <view class="btn_order" bindtap="orders">
       接单
     </view>
   </view>
 
-  <view class="detail_shop" wx:for="{{list}}" wx:key="{{index}}">
+  <view class="detail_shop" wx:for="{{waitOrderDetail.itemList}}" wx:key="{{index}}">
     <view class="shop_name">
-      黛珂紫苏水黛珂紫苏水黛珂紫苏水紫苏水黛珂紫苏水黛珂紫苏水黛珂300ml*1
+      {{item.productName}}
     </view>
-    <view class="shop_picture" bindtap="lookImg" data-src="{{item.img}}">
-      <image class="img" src="{{item.img}}" ></image>
+    <view class="shop_picture" bindtap="lookImg" data-src="{{item.imgUrl}}">
+      <image class="img" src="{{item.imgUrl}}" ></image>
     </view>
   </view>
 
