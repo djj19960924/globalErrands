@@ -1,77 +1,89 @@
 <!--pages/orderReceived/orderReceived.wxml-->
-<view class="main" wx:for="{{list}}"  wx:key="{{index}}">
+<view class="main" wx:for="{{orderReceivedList}}" wx:for-item="received" wx:key="{{index}}">
   <view class="firstbox">
     <view class="firstbox_time">
-      <view class="time_date">2019-07-02 10:10</view>
+      <view class="time_date">{{received.createTime}}</view>
 
     </view>
-    <view class="firstbox_time time_wait">已等待2天</view>
+    <view class="firstbox_time time_wait">已等待{{received.waitTime}}天</view>
   </view>
 
   <view class="secondbox">
     <view class="avatar_nickname">
       <view class="avatar">
-        <image src="../images/avatar.png"></image>
-        <text class="avatarText">QQQ</text>
+        <image src="{{received.headImgurl}}"></image>
+        <text class="avatarText">{{received.nickName}}</text>
       </view>
     </view>
-    <view class="btn_order" bindtap="order">
+    <view class="btn_order" bindtap="order" id="{{index}}">
       采购完结
     </view>
   </view>
 
-  <view class="thirdbox">
+  <view class="thirdbox" wx:if="{{received.itemList.length<5||received.itemList.length===5}}">
+
     <view class="thirdbox-main">
-      <view class="shop">
+      <view class="shop" wx:for="{{received.itemList}}" wx:for-item="itemList" wx:key="{{index}}">
         <view class="shop_name">
-          <text>黛珂紫苏水300ml*1黛珂紫苏水300ml*1黛珂紫苏水300ml*1黛珂紫苏水300ml*1黛珂紫苏水300ml*1黛珂紫苏水300ml*1黛珂紫苏水300ml*1黛珂紫苏水300ml*1黛珂紫苏水300ml*1黛珂紫苏水300ml*1黛珂紫苏水300ml*1黛珂紫苏水300ml*1</text>
+          <text>{{itemList.productName}}</text>
         </view>
-        <view class="shop-unbuy">
+        <view class="shop-unbuy" id="{{itemList.id}}" data-legworkId="{{itemList.legworkId}}" wx:if="{{!itemList.status}}" bindtap='buyClick'>
           <text>买到</text>
         </view>
-      </view>
-      <view class="shop">
-        <view class="shop_name">
-          <text>黛珂紫苏水300ml*1</text>
-        </view>
-        <view class="shop-unbuy">
-          <text>买到</text>
-        </view>
-      </view>
-      <view class="shop">
-        <view class="shop_name">
-          <text>黛珂紫苏水300ml*1</text>
-        </view>
-        <view class="shop-buy">
+        <view class="shop-buy" wx:else>
           <text>已买到</text>
         </view>
+
       </view>
 
-      <view wx:if="{{!status}}" bindtap='show' class="shop">
-        <view class="shop">
-          <view class="shop_name">
-            <text>黛珂紫苏水300ml*1</text>
-          </view>
-          <view class="shop-unbuy">
-            <text>买到</text>
-          </view>
-        </view>
-      </view>
     </view>
-    <view class="btn_detail" bindtap='showDetail'>
+    <view class="btn_detail" bindtap='showDetail' id="{{index}}">
       >
     </view>
   </view>
 
-  <view class="fourthbox">
-    <view class="show1" bindtap='show' wx:if="{{status}}">
+  <view class="thirdbox" wx:else>
+    <view class="thirdbox-main">
+      <view class="shop" wx:for="{{received.openList}}" wx:for-item="itemList" wx:key="{{index}}">
+        <view class="shop_name">
+          <text>{{itemList.productName}}</text>
+        </view>
+        <view class="shop-unbuy" id="{{itemList.id}}" data-legworkId="{{itemList.legworkId}}" wx:if="{{!itemList.status}}" bindtap="buyClick">
+          <text>买到</text>
+        </view>
+        <view class="shop-buy" wx:else>
+          <text>已买到</text>
+        </view>
+
+      </view>
+
+      <view wx:if="{{!received.status}}" class="shop" wx:for="{{received.hiddenOrderReceivedList}}" wx:key="{{index}}" wx:for-item="hiddenList">
+        <view class="shop_name">
+          <text>{{hiddenList.productName}}</text>
+        </view>
+        <view class="shop-unbuy" id="{{itemList.id}}" data-legworkId="{{itemList.legworkId}}" wx:if="{{!hiddenList.status}}" bindtap="buyClick">
+          <text>买到</text>
+        </view>
+        <view class="shop-buy" wx:else>
+          <text>已买到</text>
+        </view>
+      </view>
+
+    </view>
+
+    <view class="btn_detail" bindtap='showDetail' id="{{index}}">
+      >
+    </view>
+  </view>
+  <view class="fourthbox" wx:if="{{received.itemList.length>5}}">
+    <view class="show1" bindtap='show' id="{{index}}" wx:if="{{received.status}}">
       <view class="shop_btn1">
         点击展开
       </view>
       <image class="showImg" src="../images/showIcon.png"></image>
     </view>
 
-    <view class="show1" bindtap='show' wx:else>
+    <view class="show1" bindtap='show' id="{{index}}" wx:else>
       <view class="shop_btn1">
         收起
       </view>
@@ -80,5 +92,34 @@
 
   </view>
 
+
+</view>
+
+<view wx:if='{{isbtn}}' class='addTips' catchtouchmove='preventTouchMove'>
+  <view class='mask' />
+  <view class="tips">
+    <view class="tips-top">
+      填写进度
+    </view>
+    <view class="tip-img">
+      <view class="star">*</view>
+      <view class="tip-imgUpdate">
+        <image src="../images/addImg.png" bindtap="chooseImg" wx:if="{{!scheduleUrl}}"></image>
+        <image src="{{scheduleUrl}}" bindtap="chooseImg" wx:else></image>
+        <view class="tip-updateText">
+          (上传图片)
+        </view>
+      </view>
+
+    </view>
+
+    <view class="tip-content">
+      <textarea placeholder="请输入买到情况" bindinput='inputBuyContent'></textarea>
+    </view>
+    <view class="tip-btn">
+      <view class="tip-cancel" bindtap="cancelBuy">取消</view>
+      <view class="tip-sumbit" bindtap="submitBuy">确认提交</view>
+    </view>
+  </view>
 
 </view>

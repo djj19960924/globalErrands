@@ -1,12 +1,15 @@
 {
   "pages": [
+    "pages/orderReceived/orderReceived",
+    "pages/login/login",
+    
     "pages/waitOrder/waitOrder",
     "pages/orderEnd/orderEnd",
     
-    "pages/login/login",
+    
     "pages/orderProgress/orderProgress",
     "pages/showDetail/showDetail",
-    "pages/orderReceived/orderReceived",
+    
     "pages/evaluate/evaluate"
   ],
   "window": {

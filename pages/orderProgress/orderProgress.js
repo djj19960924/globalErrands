@@ -1,38 +1,49 @@
 // pages/orderProgress/orderProgress.js
+const cfg = require('../../cfg.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [1, 1, 1],
-    status: true,
-    isbtn:false
+    isbtn:false,
+    orderReceivedDetail:{},
+    list:[1,1,1]
   },
+
   show: function () {
-    let status = !this.data.status
+    var orderReceivedDetail = this.data.orderReceivedDetail
+    orderReceivedDetail.status = !orderReceivedDetail.status
     this.setData({
-      status
+      orderReceivedDetail
     })
   },
+
   btnclick(){
     this.setData({
       isbtn:true
     })
   },
 
-  onImageClose: function () {
-    this.setData({
-      isbtn: false
-    });
-    // wx.showTabBar();
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const orderReceivedDetail = wx.getStorageSync('orderReceivedDetail')
+    var { itemList } = orderReceivedDetail
+    var buyShopList = []
+    // if (itemList.length){
+    //   itemList.forEach(element => {
+    //     if(element.status === 1){
+    //       buyShopList.push(element)
+    //     }
+    //   })
+    // }
+    this.setData({
+      orderReceivedDetail, buyShopList
+    })
+    console.log('orderReceivedDetail:', orderReceivedDetail)
   },
 
   /**
@@ -84,3 +95,82 @@ Page({
 
   }
 })
+
+//采购完结
+function buyFinish(legworkId) {
+  var that = this;
+  wx.request({
+    url: cfg.localUrl + 'legworkBuyer/buyFinish',
+    method: "post",
+    data: {
+      legworkId: legworkId
+    },
+    success: (res) => {
+      if (res.data.status === 10000) {
+        wx.showToast({
+          title: '采购成功',
+          icon: 'none'
+        })
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '采购异常',
+        })
+      }
+
+    }
+  })
+}
+
+//买到商品
+function buyGoods(scheduleUrl, productId, legworkId, note) {
+  var that = this
+  wx.request({
+    url: cfg.localUrl + 'legworkBuyer/buyGoods',
+    method: 'post',
+    data: {
+      scheduleUrl: scheduleUrl,
+      productId: parseInt(productId),
+      legworkId: legworkId,
+      note: note
+    },
+    success: (res) => {
+      if (res.data.status === 10000) {
+        that.setData({
+          isbtn: false,
+        })
+        getOrderReceivedList.call(that);
+      }
+    }
+  })
+}
+
+//上传图片获取scheduleUrl
+function uploadImg(imgUrl) {
+  var that = this
+  console.log('this:', this)
+  wx.uploadFile({
+    url: cfg.localUrl + 'legworkBuyer/fileUplode',
+    filePath: imgUrl,
+    name: 'file',
+    success: function (res) {
+      var data = JSON.parse(res.data)
+      if (data.status === 10000) {
+        wx.showToast({
+          title: '上传成功',
+          icon: 'none',
+        })
+        var scheduleUrl = data.data
+        that.setData({
+          scheduleUrl: scheduleUrl
+        })
+      } else {
+        wx.showToast({
+          title: '上传图片异常',
+          icon: 'none',
+        })
+      }
+    }
+  })
+
+}

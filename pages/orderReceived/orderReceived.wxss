@@ -55,7 +55,7 @@ page{
   display: flex;
   align-items: center
 }
-image{
+.avatar image{
   border-radius: 50%;
   width: 115rpx;
   height: 115rpx
@@ -102,6 +102,7 @@ image{
 .btn_detail{
   color: #767DFA;
   font-size: 60rpx;
+  margin-top: -20rpx;
 }
 
 .fourthbox{
@@ -123,4 +124,114 @@ image{
   width: 26rpx;
   height: 28rpx;
   margin-left: 10rpx;
+}
+
+
+.addTips{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+  z-index: 5;
+  background-color: #000;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.tips {
+  position: fixed;
+  border-radius: 5rpx;
+  width:580rpx;
+  height: 485rpx;
+  background: #fff;
+  
+  z-index: 10;
+}
+
+.tips-top {
+  height: 106rpx;
+  background: #A6ACFE;
+  line-height: 106rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 38rpx;
+}
+.tip-img{
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+  
+}
+.star{
+  width: 50rpx;
+  color: #FF1111;
+  font-size: 38rpx;
+  text-align: center;
+}
+.tip-imgUpdate{
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #F2F2F2; 
+  height: 150rpx;
+  width: 480rpx;
+}
+.tip-imgUpdate image{
+  width: 96rpx;
+  height: 96rpx;
+}
+.tip-updateText{
+  font-size: 28rpx;
+  margin-left:10rpx;
+}
+.tip-content{
+  margin:40rpx 50rpx 0rpx;
+  font-size:30rpx;
+  width: 480rpx;
+  height:  86rpx;
+}
+textarea{
+  width: 100%;
+  height: 100%;
+  word-wrap:break-word;
+}
+.tip-btn{
+  margin:0 50rpx;
+  display: flex;
+  line-height: 80rpx;
+  text-align: center;
+}
+.tip-cancel{
+  width: 210rpx;
+  height: 80rpx;
+  border: 1rpx solid #E5E5E5;
+  margin-right:60rpx; 
+  color: #000
+}
+.tip-sumbit{
+  width: 210rpx;
+  height: 80rpx;
+  border: 1rpx solid #878CE2;
+  background: #878CE2;
+  color: #FFF;
+  
+}
+.addTips .close-mask {
+  position: relative;
+  width: 80rpx;
+  height: 80rpx;
+  z-index: 10;
 }

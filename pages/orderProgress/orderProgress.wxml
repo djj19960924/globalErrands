@@ -3,62 +3,67 @@
   <view class="top_progress">
     <view class="firstbox">
       <view class="firstbox_time">
-        <view class="time_date">2019-07-02 10:10</view>
+        <view class="time_date">{{orderReceivedDetail.createTime}}</view>
       </view>
-      <view class="firstbox_time time_wait">已等待2天</view>
+      <view class="firstbox_time time_wait">已等待{{orderReceivedDetail.waitTime}}天</view>
     </view>
 
     <view class="secondbox">
       <view class="avatar_nickname">
         <view class="avatar">
-          <image src="../images/avatar.png" class="avatarImg"></image>
-          <text class="avatarText">QQQ</text>
+          <image src="{{orderReceivedDetail.headImgurl}}" class="avatarImg"></image>
+          <text class="avatarText">{{orderReceivedDetail.nickName}}</text>
         </view>
       </view>
     </view>
 
-    <view class="thirdbox">
+    <view class="thirdbox" wx:if="{{orderReceivedDetail.itemList.length<5||orderReceivedDetail.itemList.length===5}}">
       <view class="thirdbox-main">
-        <view class="shop">
+        <view class="shop" wx:for="{{orderReceivedDetail.itemList}}" wx:for-item="itemList" wx:key="{{index}}">
           <view class="shop_name">
-            <text>黛珂紫苏水黛珂紫苏水黛珂紫苏水黛珂紫苏水珂紫苏水黛珂紫苏水300ml*1</text>
+            <text>{{itemList.productName?itemList.productName:'无'}}</text>
           </view>
-          <view class="shop-buy">
-            <text>已买到</text>
-          </view>
-        </view>
-        <view class="shop">
-          <view class="shop_name">
-            <text>黛珂紫苏水黛珂紫苏水黛珂紫苏水黛珂紫苏水珂紫苏水黛珂紫苏水黛珂紫苏水黛珂紫苏水黛珂紫苏水黛珂紫苏水珂紫苏水黛珂紫苏水300ml*1</text>
-          </view>
-          <view class="shop-buy">
-            <text>已买到</text>
-          </view>
-        </view>
-        <view class="shop">
-          <view class="shop_name">
-            <text>黛珂紫苏水300ml*1</text>
-          </view>
-          <view class="shop-unbuy">
+          <view class="shop-unbuy" wx:if="{{!itemList.status}}">
             <text>买到</text>
           </view>
+          <view class="shop-buy" wx:else>
+            <text>已买到</text>
+          </view>
+        </view>
+        
+      </view>
+    </view>
+
+    <view class="thirdbox" wx:else>
+      <view class="thirdbox-main">
+        <view class="shop" wx:for="{{orderReceivedDetail.openList}}" wx:for-item="itemList" wx:key="{{index}}">
+          <view class="shop_name">
+            <text>{{itemList.productName}}</text>
+          </view>
+          <view class="shop-unbuy" wx:if="{{!itemList.status}}">
+            <text>买到</text>
+          </view>
+          <view class="shop-buy" wx:else>
+            <text>已买到</text>
+          </view>
         </view>
 
-        <view wx:if="{{!status}}" bindtap='show' class="shop">
-          <view class="shop">
-            <view class="shop_name">
-              <text>黛珂紫苏水300ml*1</text>
-            </view>
-            <view class="shop-unbuy">
-              <text>买到</text>
-            </view>
+        <view wx:if="{{!orderReceivedDetail.status}}" class="shop" wx:for="{{orderReceivedDetail.hiddenOrderReceivedList}}" wx:key="{{index}}" wx:for-item="hiddenList">
+          <view class="shop_name">
+            <text>{{hiddenList.productName}}</text>
+          </view>
+          <view class="shop-unbuy" wx:if="{{!hiddenList.status}}">
+            <text>买到</text>
+          </view>
+          <view class="shop-buy" wx:else>
+            <text>已买到</text>
           </view>
         </view>
       </view>
     </view>
 
-    <view class="fourthbox">
-      <view class="show1" bindtap='show' wx:if="{{status}}">
+    <view class="fourthbox" wx:if="{{orderReceivedDetail.itemList.length>5}}"  >
+      <view class="show1" bindtap='show' wx:if="{{orderReceivedDetail.status}}">
         <view class="shop_btn1">
           点击展开
         </view>
@@ -106,7 +111,7 @@
             (上传图片)
           </view>
         </view>
-        
+
       </view>
 
       <view class="tip-content">
@@ -117,6 +122,6 @@
         <view class="tip-sumbit">确认提交</view>
       </view>
     </view>
-    
+
   </view>
 </view>

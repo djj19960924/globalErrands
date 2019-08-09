@@ -72,7 +72,7 @@ page{
   margin-top:10rpx;
 }
 
-.shop-buy{
+.shop-unbuy{
   color:#8188FA;
 }
 
@@ -96,6 +96,10 @@ page{
   align-items: center;
   justify-content: center;
   width: 300rpx;
+}
+.show1 .shop_btn1{
+    color: #8188FA;
+    font-size: 30rpx; 
 }
 .showImg{
   width: 26rpx;

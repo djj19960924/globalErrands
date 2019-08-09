@@ -1,5 +1,6 @@
 const cfg = require('../../cfg.js');
 const utils = require('../../utils/util.js')
+const app = getApp();
 Page({
 
   /**
@@ -7,7 +8,6 @@ Page({
    */
   data: {
     waitOrderList:[],
-    buyerId: 2
   },
 
   //点击展开收起
@@ -34,7 +34,6 @@ Page({
   orders: function(e){
     var id = e.currentTarget.id
     var waitOrder = this.data.waitOrderList[id]
-    var { buyerId } = this.data
     wx.showModal({
       title: '提示',
       content: '确认接单吗？接单后，请尽快安排采购哦',
@@ -42,6 +41,8 @@ Page({
         if (res.confirm) {
           console.log('用户点击确定')
           var legworkId = waitOrder.id
+          var buyerId = app.globalData.buyerId
+          console.log('buyerId:', buyerId)
           buyerOrders.call(this, legworkId, buyerId)
         } else if (res.cancel) {
           console.log('用户点击取消')
@@ -54,6 +55,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     getWaitOrderList.call(this)
   },
 
@@ -144,14 +146,14 @@ function getWaitOrderList(){
 
 //买手接单
 function buyerOrders(legworkId, buyerId){
-  console.log('this:',this)
   var that = this;
   wx.request({
     url: cfg.localUrl + 'legworkBuyer/receiveLegworkOrder',
     method: "post",
     data: {
       legworkId: legworkId,
-      buyerId: buyerId,
+      // buyerId: buyerId,
+      buyerId: 2,
       isEnd: 1
     },
     success: (res)=>{

@@ -1,4 +1,5 @@
 const cfg = require('../../cfg.js');
+const app = getApp();
 
 Page({
 
@@ -32,6 +33,7 @@ Page({
         },
         success: (res) => {
           console.log(res)
+          app.globalData.buyerId = res.data.data.userId
           if (res.data.status === 10000) {
             wx.switchTab({
               url: '../waitOrder/waitOrder',
