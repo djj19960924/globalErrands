@@ -25,7 +25,7 @@
     <view class="thirdbox-main">
       <view class="shop" wx:for="{{received.itemList}}" wx:for-item="itemList" wx:key="{{index}}">
         <view class="shop_name">
-          <text>{{itemList.productName}}</text>
+          <text>{{itemList.productName}}*{{itemList.productNum}}</text>
         </view>
         <view class="shop-unbuy" id="{{itemList.id}}" data-legworkId="{{itemList.legworkId}}" wx:if="{{!itemList.status}}" bindtap='buyClick'>
           <text>买到</text>
@@ -46,7 +46,7 @@
     <view class="thirdbox-main">
       <view class="shop" wx:for="{{received.openList}}" wx:for-item="itemList" wx:key="{{index}}">
         <view class="shop_name">
-          <text>{{itemList.productName}}</text>
+          <text>{{itemList.productName}}*{{itemList.productNum}}</text>
         </view>
         <view class="shop-unbuy" id="{{itemList.id}}" data-legworkId="{{itemList.legworkId}}" wx:if="{{!itemList.status}}" bindtap="buyClick">
           <text>买到</text>
@@ -59,7 +59,7 @@
 
       <view wx:if="{{!received.status}}" class="shop" wx:for="{{received.hiddenOrderReceivedList}}" wx:key="{{index}}" wx:for-item="hiddenList">
         <view class="shop_name">
-          <text>{{hiddenList.productName}}</text>
+          <text>{{hiddenList.productName}}*{{hiddenList.productNum}}</text>
         </view>
         <view class="shop-unbuy" id="{{itemList.id}}" data-legworkId="{{itemList.legworkId}}" wx:if="{{!hiddenList.status}}" bindtap="buyClick">
           <text>买到</text>

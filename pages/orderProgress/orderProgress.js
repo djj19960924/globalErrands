@@ -7,12 +7,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isbtn:false,
-    orderReceivedDetail:{},
-    list:[1,1,1]
+    isbtn: false,
+    orderReceivedDetail: {},
+    //买到填写进度商品图片
+    scheduleUrl: '',
+    //填写买到商品情况
+    note: '',
+    //当前商品id
+    productId: null,
+    legworkId: null
   },
 
-  show: function () {
+  show: function() {
     var orderReceivedDetail = this.data.orderReceivedDetail
     orderReceivedDetail.status = !orderReceivedDetail.status
     this.setData({
@@ -20,78 +26,167 @@ Page({
     })
   },
 
-  btnclick(){
+  btnclick() {
     this.setData({
-      isbtn:true
+      isbtn: true
     })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     const orderReceivedDetail = wx.getStorageSync('orderReceivedDetail')
+    var legworkId = orderReceivedDetail.id
     var { itemList } = orderReceivedDetail
     var buyShopList = []
-    // if (itemList.length){
-    //   itemList.forEach(element => {
-    //     if(element.status === 1){
-    //       buyShopList.push(element)
-    //     }
-    //   })
-    // }
+    if (itemList.length) {
+      itemList.forEach(element => {
+        if (element.status === 1) {
+          buyShopList.push(element)
+        }
+      })
+    }
     this.setData({
-      orderReceivedDetail, buyShopList
+      orderReceivedDetail,
+      buyShopList,
+      legworkId
     })
-    console.log('orderReceivedDetail:', orderReceivedDetail)
+    console.log('buyShopList:', buyShopList)
   },
+
+  
+  buyClick(e) {
+    var productId = e.currentTarget.id
+    var legworkId = this.data.legworkId
+    console.log('11', legworkId, productId)
+    this.setData({
+      isbtn: true,
+      productId,
+      legworkId
+    })
+  },
+
+  cancelBuy() {
+    this.setData({
+      isbtn: false,
+      scheduleUrl: '',
+    })
+    wx.showTabBar();
+  },
+
+  //选择图片
+  chooseImg: function () {
+    let that = this
+    wx.chooseImage({
+      // 默认9
+      count: 1,
+      // 可以指定是原图还是压缩图，默认二者都有
+      sizeType: ['original', 'compressed'],
+      // 可以指定来源是相册还是相机，默认二者都有
+      sourceType: ['album', 'camera'],
+      success: (res) => {
+        console.log('res:', res)
+        var tempFilePaths = res.tempFilePaths
+        //上传中
+        wx.showToast({
+          title: '正在上传...',
+          icon: 'loading',
+          mask: true,
+          duration: 1000
+        })
+        uploadImg.call(this, tempFilePaths[0])
+      }
+    })
+  },
+
+  //填写买到情况
+  inputBuyContent: function (e) {
+    var note = e.detail.value
+    this.setData({
+      note
+    })
+  },
+
+  //确定买到
+  submitBuy: function () {
+    var { scheduleUrl, productId, legworkId, note } = this.data
+    if (!scheduleUrl) {
+      wx.showModal({
+        title: '提示',
+        content: '商品图片必须填写',
+      })
+    } else {
+      buyGoods.call(this, scheduleUrl, productId, legworkId, note)
+    }
+  },
+
+  //采购完结
+  order: function () {
+    var orderReceivedDetail = this.data.orderReceivedDetail
+    console.log('orderReceivedDetail:', orderReceivedDetail)
+    wx.showModal({
+      title: '提示',
+      content: '本次所有商品已经和客服沟通，确认要结束采购流程吗？',
+      success: (res) => {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          var legworkId = orderReceivedDetail.id
+          buyFinish.call(this, legworkId)
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
@@ -111,6 +206,15 @@ function buyFinish(legworkId) {
           title: '采购成功',
           icon: 'none'
         })
+        wx.switchTab({
+          url: '../orderReceived/orderReceived',
+          success: function (e) {
+            let page = getCurrentPages().pop();
+            if (page == undefined || page == null) return;
+            page.onLoad();
+          }
+        })
+
       } else {
         wx.showModal({
           title: '提示',
@@ -139,7 +243,6 @@ function buyGoods(scheduleUrl, productId, legworkId, note) {
         that.setData({
           isbtn: false,
         })
-        getOrderReceivedList.call(that);
       }
     }
   })
@@ -148,12 +251,11 @@ function buyGoods(scheduleUrl, productId, legworkId, note) {
 //上传图片获取scheduleUrl
 function uploadImg(imgUrl) {
   var that = this
-  console.log('this:', this)
   wx.uploadFile({
     url: cfg.localUrl + 'legworkBuyer/fileUplode',
     filePath: imgUrl,
     name: 'file',
-    success: function (res) {
+    success: function(res) {
       var data = JSON.parse(res.data)
       if (data.status === 10000) {
         wx.showToast({

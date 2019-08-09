@@ -113,6 +113,10 @@ page{
   padding-bottom: 50rpx;
 }
 
+.noShop{
+  padding:20rpx;
+}
+
 .third_shop{
   margin:0 30rpx;
   height: 175rpx;

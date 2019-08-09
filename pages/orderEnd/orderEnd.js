@@ -19,7 +19,6 @@ Page({
     this.setData({
       orderEndList
     })
-    console.log('11:', this.data.orderEndList)
   },
 
   /**

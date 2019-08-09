@@ -22,7 +22,7 @@
   <view class="thirdbox hiddenShop" wx:if="{{waitOrder.itemList.length<5||waitOrder.itemList.length===5}}">
     <view class="shop " >
       <view class="shop_name" wx:for="{{waitOrder.itemList}}" wx:for-item="itemList" wx:key="{{index}}">
-        <text>{{itemList.productName?itemList.productName:'无'}}</text>
+        <text>{{itemList.productName}}*{{itemList.productNum}}</text>
       </view>
     </view>
     <view class="btn_detail" bindtap='showDetail' id="{{index}}">
@@ -33,12 +33,12 @@
   <view class="thirdbox" wx:else>
     <view class="shop" >
       <view class="shop_name" wx:for="{{waitOrder.openList}}" wx:for-item="itemList" wx:key="{{index}}">
-        <text>{{itemList.productName}}</text>
+        <text>{{itemList.productName}}*{{itemList.productNum}}</text>
       </view>
 
       <view wx:if="{{!waitOrder.status}}" wx:for="{{waitOrder.hiddenWaitOrderList}}" wx:key="{{index}}" wx:for-item="hiddenList" class="shop_name">
         <view class="shop_name">
-          <text>{{hiddenList.productName}}</text>
+          <text>{{hiddenList.productName}}*{{hiddenList.productNum}}</text>
         </view>
         
       </view>

@@ -31,19 +31,19 @@
       <view wx:if="{{order.itemList.length<5||order.itemList.length===5}}">
         <view class="shop_unshow" wx:for="{{order.itemList}}" wx:for-item="itemList" wx:key="{{index}}">
           <view class="shop_name" wx:if="item.itemList.length!==0">
-            {{itemList.productName?itemList.productName:'无'}}
+            {{itemList.productName}}*{{itemList.productNum}}
           </view>
         </view>
       </view>
       <view wx:else>
         <view class="shop" wx:for="{{order.openList}}" wx:key="{{index}}">
           <view class="shop_name">
-            {{item.productName}}
+            {{item.productName}}*{{itemList.productNum}}
           </view>
         </view>
         <view wx:if="{{!order.status}}" wx:for="{{order.hiddenOrderEndList}}" wx:key="{{index}}" wx:for-item="hiddenList">
           <view class="shop_name">
-            <text>{{hiddenList.productName}}</text>
+            <text>{{hiddenList.productName}}*{{hiddenList.productNum}}</text>
           </view>
         </view>
         <view class="fourthbox">

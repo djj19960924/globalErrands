@@ -20,7 +20,7 @@
 
   <view class="detail_shop" wx:for="{{waitOrderDetail.itemList}}" wx:key="{{index}}">
     <view class="shop_name">
-      {{item.productName}}
+      {{item.productName}}*{{item.productNum}}
     </view>
     <view class="shop_picture" bindtap="lookImg" data-src="{{item.imgUrl}}">
       <image class="img" src="{{item.imgUrl}}" ></image>

@@ -21,9 +21,9 @@
       <view class="thirdbox-main">
         <view class="shop" wx:for="{{orderReceivedDetail.itemList}}" wx:for-item="itemList" wx:key="{{index}}">
           <view class="shop_name">
-            <text>{{itemList.productName?itemList.productName:'无'}}</text>
+            <text>{{itemList.productName}}*{{itemList.productNum}}</text>
           </view>
-          <view class="shop-unbuy" wx:if="{{!itemList.status}}">
+          <view class="shop-unbuy" id="{{itemList.id}}" wx:if="{{!itemList.status}}" bindtap="buyClick">
             <text>买到</text>
           </view>
           <view class="shop-buy" wx:else>
@@ -38,9 +38,9 @@
       <view class="thirdbox-main">
         <view class="shop" wx:for="{{orderReceivedDetail.openList}}" wx:for-item="itemList" wx:key="{{index}}">
           <view class="shop_name">
-            <text>{{itemList.productName}}</text>
+            <text>{{itemList.productName}}*{{itemList.productNum}}</text>
           </view>
-          <view class="shop-unbuy" wx:if="{{!itemList.status}}">
+          <view class="shop-unbuy" id="{{itemList.id}}" wx:if="{{!itemList.status}}" bindtap="buyClick">
             <text>买到</text>
           </view>
           <view class="shop-buy" wx:else>
@@ -50,9 +50,9 @@
 
         <view wx:if="{{!orderReceivedDetail.status}}" class="shop" wx:for="{{orderReceivedDetail.hiddenOrderReceivedList}}" wx:key="{{index}}" wx:for-item="hiddenList">
           <view class="shop_name">
-            <text>{{hiddenList.productName}}</text>
+            <text>{{hiddenList.productName}}*{{hiddenList.productNum}}</text>
           </view>
-          <view class="shop-unbuy" wx:if="{{!hiddenList.status}}">
+          <view class="shop-unbuy" id="{{hiddenList.id}}" wx:if="{{!hiddenList.status}}" bindtap="buyClick">
             <text>买到</text>
           </view>
           <view class="shop-buy" wx:else>
@@ -82,16 +82,19 @@
   </view>
 
   <view class="bottom_progress">
-    <view class="third_shop" wx:for="{{list}}" wx:key="{{index}}">
+    <view class="noShop" wx:if="{{!buyShopList.length}}">
+      暂时未买到商品~
+    </view>
+    <view class="third_shop"  wx:for="{{buyShopList}}" wx:key="{{index}}" wx:for-item="buyShop">
       <view class="shop_name">
-        <view class="progress_time firstbox_time">2019-07-02 18:10</view>
-        <view class="progress_time">黛珂紫苏水300ml*1已买到</view>
+        <view class="progress_time firstbox_time">{{buyShop.createTime}}</view>
+        <view class="progress_time">{{buyShop.productName}}*{{buyShop.productNum}}已买到</view>
       </view>
       <view class="shop_picture">
-        <image class="img" src="../images/avatar.png"></image>
+        <image class="img" src="{{buyShop.imgUrl}}"></image>
       </view>
     </view>
-    <view class="progress_over" bindtap="btnclick">
+    <view class="progress_over" bindtap="order">
       采购结束
     </view>
   </view>
@@ -106,20 +109,20 @@
       <view class="tip-img">
         <view class="star">*</view>
         <view class="tip-imgUpdate">
-          <image src="../images/addImg.png"></image>
+          <image src="../images/addImg.png" bindtap="chooseImg" wx:if="{{!scheduleUrl}}"></image>
+          <image src="{{scheduleUrl}}" bindtap="chooseImg" wx:else></image>
           <view class="tip-updateText">
             (上传图片)
           </view>
         </view>
 
       </view>
-
       <view class="tip-content">
-        <textarea placeholder="请输入买到情况"></textarea>
+        <textarea placeholder="请输入买到情况" bindinput='inputBuyContent'></textarea>
       </view>
       <view class="tip-btn">
-        <view class="tip-cancel">取消</view>
-        <view class="tip-sumbit">确认提交</view>
+        <view class="tip-cancel" bindtap="cancelBuy">取消</view>
+        <view class="tip-sumbit" bindtap="submitBuy">确认提交</view>
       </view>
     </view>
 
