@@ -6,7 +6,7 @@
       <view class="text-buy">已经完成那么多订单</view>
     </view>
     <view class="top_img">
-      <image class="img" src='../images/orderEndbg.png'></image>
+      <image class="img" src='https://resource.maishoumiji.com/globalErrandsBuyers/orderEndbg.png'></image>
     </view>
   </view>
 
@@ -15,7 +15,7 @@
       <view class="firstbox_time">
         <view class="time_date">{{order.createTime}}</view>
       </view>
-      <view class="firstbox_time time_wait">已等待{{order.waitTime}}天</view>
+      <view class="firstbox_time time_wait">已等待<text wx:if="{{order.waitDay}}">{{order.waitDay}}天</text><text wx:if="{{order.waitHour}}">{{order.waitHour}}小时</text></view>
     </view>
     <view class="second">
       <view class="secondbox">
@@ -51,13 +51,13 @@
             <view class="shop_btn1">
               点击展开
             </view>
-            <image class="showImg" src="../images/showIcon.png"></image>
+            <image class="showImg" src="https://resource.maishoumiji.com/globalErrandsBuyers/showIcon.png"></image>
           </view>
           <view class="show1" bindtap='show' id="{{index}}" wx:else>
             <view class="shop_btn1">
               收起
             </view>
-            <image class="showImg" src="../images/hidden.png"></image>
+            <image class="showImg" src="https://resource.maishoumiji.com/globalErrandsBuyers/hidden.png"></image>
           </view>
           
         </view>

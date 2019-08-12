@@ -3,7 +3,7 @@
 <view class="main">
   <view class="detail_time">
     <view class="time-date">{{waitOrderDetail.createTime}}</view>
-    <view class="time-day">已等待{{waitOrderDetail.waitTime}}天</view>
+    <view class="time-day">已等待<text wx:if="{{waitOrderDetail.waitDay}}">{{waitOrderDetail.waitDay}}天</text><text wx:if="{{waitOrderDetail.waitHour}}">{{waitOrderDetail.waitHour}}小时</text></view>
   </view>
 
   <view class="detail_avatar">
@@ -22,7 +22,7 @@
     <view class="shop_name">
       {{item.productName}}*{{item.productNum}}
     </view>
-    <view class="shop_picture" bindtap="lookImg" data-src="{{item.imgUrl}}">
+    <view class="shop_picture" bindtap="previewImage" data-src="{{item.imgUrl}}">
       <image class="img" src="{{item.imgUrl}}" ></image>
     </view>
   </view>

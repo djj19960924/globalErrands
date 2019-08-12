@@ -19,9 +19,9 @@ Page({
     var userName = e.detail.value.userName;
     var passWord = e.detail.value.passWord;
     if (!userName || !passWord) {
-      wx.showModal({
-        title: '提示',
-        content: '账号或密码不能为空',
+      wx.showToast({
+        title: '账号或密码不能为空',
+        icon: 'none'
       })
     } else {
       wx.request({
@@ -33,8 +33,8 @@ Page({
         },
         success: (res) => {
           console.log(res)
-          app.globalData.buyerId = res.data.data.userId
           if (res.data.status === 10000) {
+            app.globalData.buyerId = res.data.data.userId
             wx.switchTab({
               url: '../waitOrder/waitOrder',
             })
@@ -43,9 +43,9 @@ Page({
               icon: 'none'
             })
           } else {
-            wx.showModal({
-              title: '提示',
-              content: '用户名或密码不正确',
+            wx.showToast({
+              title: '用户名或密码不正确',
+              icon: 'none'
             })
           }
         }
@@ -54,9 +54,9 @@ Page({
   },
 
   showDialog: function(e) {
-    wx.showModal({
-      title: '提示',
-      content: '敬请期待'
+    wx.showToast({
+      title: '敬请期待',
+      icon: 'none'
     })
   },
 

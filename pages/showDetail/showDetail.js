@@ -23,9 +23,7 @@ Page({
   //买手接单
   orders: function(e) {
     var waitOrderDetail = this.data.waitOrderDetail
-    var {
-      buyerId
-    } = this.data
+    var { buyerId } = this.data
     wx.showModal({
       title: '提示',
       content: '确认接单吗？接单后，请尽快安排采购哦',
@@ -41,7 +39,7 @@ Page({
     })
   },
 
-  lookImg: function(e) {
+  previewImage: function(e) {
     var url = e.currentTarget.dataset.src
     wx.previewImage({
       current: url,

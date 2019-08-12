@@ -4,7 +4,7 @@
       <view class="time_date">{{waitOrder.createTime}}</view>
       
     </view>
-    <view class="firstbox_time time_wait">已等待{{waitOrder.waitTime}}天</view>
+    <view class="firstbox_time time_wait">已等待<text wx:if="{{waitOrder.waitDay}}">{{waitOrder.waitDay}}天</text><text wx:if="{{waitOrder.waitHour}}">{{waitOrder.waitHour}}小时</text></view>
     
   </view>
   <view class="secondbox">
@@ -53,14 +53,14 @@
       <view class="shop_btn1" >
         点击展开
       </view>
-      <image class="showImg" src="../images/showIcon.png"></image>
+      <image class="showImg" src="https://resource.maishoumiji.com/globalErrandsBuyers/showIcon.png"></image>
     </view>
  
     <view class="show1" bindtap='show' id="{{index}}" wx:else>
       <view class="shop_btn1" >
         收起
       </view>
-      <image class="showImg" src="../images/hidden.png"></image>
+      <image class="showImg" src="https://resource.maishoumiji.com/globalErrandsBuyers/hidden.png"></image>
     </view>
     
   </view>

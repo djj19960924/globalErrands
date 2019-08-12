@@ -7,7 +7,7 @@
     <span class="font_space">手</span>
     <span class="font_space">端</span>
   </view>
-  <image src="../images/logo.png"></image>
+  <image src="https://resource.maishoumiji.com/globalErrandsBuyers/logo.png"></image>
   
   <form bindsubmit='formSubmit'>
     <input type='text' maxlength="11" placeholder='账号' placeholder-class='input-login-text' name="userName"></input>

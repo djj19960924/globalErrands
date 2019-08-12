@@ -5,7 +5,7 @@
       <view class="time_date">{{received.createTime}}</view>
 
     </view>
-    <view class="firstbox_time time_wait">已等待{{received.waitTime}}天</view>
+    <view class="firstbox_time time_wait">已等待<text wx:if="{{received.waitDay}}">{{received.waitDay}}天</text><text wx:if="{{received.waitHour}}">{{received.waitHour}}小时</text></view>
   </view>
 
   <view class="secondbox">
@@ -80,14 +80,14 @@
       <view class="shop_btn1">
         点击展开
       </view>
-      <image class="showImg" src="../images/showIcon.png"></image>
+      <image class="showImg" src="https://resource.maishoumiji.com/globalErrandsBuyers/showIcon.png"></image>
     </view>
 
     <view class="show1" bindtap='show' id="{{index}}" wx:else>
       <view class="shop_btn1">
         收起
       </view>
-      <image class="showImg" src="../images/hidden.png"></image>
+      <image class="showImg" src="https://resource.maishoumiji.com/globalErrandsBuyers/hidden.png"></image>
     </view>
 
   </view>
@@ -104,7 +104,7 @@
     <view class="tip-img">
       <view class="star">*</view>
       <view class="tip-imgUpdate">
-        <image src="../images/addImg.png" bindtap="chooseImg" wx:if="{{!scheduleUrl}}"></image>
+        <image src="https://resource.maishoumiji.com/globalErrandsBuyers/addImg.png" bindtap="chooseImg" wx:if="{{!scheduleUrl}}"></image>
         <image src="{{scheduleUrl}}" bindtap="chooseImg" wx:else></image>
         <view class="tip-updateText">
           (上传图片)

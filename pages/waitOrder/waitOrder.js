@@ -126,6 +126,8 @@ function getWaitOrderList(){
         waitOrderList.forEach(element => {
           element.status = true
           element.createTime = utils.formatDateNoSecond(element.createTime);
+          element.waitDay = parseInt(element.waitTime/24)
+          element.waitHour = element.waitTime - element.waitDay * 24
           if (element.nickName){
             element.nickName = element.nickName.substring(0, 1) + '**' + element.nickName.substring(element.nickName.length - 2, element.nickName.length - 1)
           }else{
@@ -139,6 +141,7 @@ function getWaitOrderList(){
         that.setData({
           waitOrderList: waitOrderList
         })
+        console.log('waitOrderList:', waitOrderList)
       }
     } 
   })

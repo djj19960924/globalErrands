@@ -1,6 +1,7 @@
 // pages/orderReceived/orderReceived.js
 const cfg = require('../../cfg.js');
 const utils = require('../../utils/util.js')
+const app = getApp();
 Page({
 
   /**
@@ -39,11 +40,10 @@ Page({
   //进入订单详情
   showDetail: function(e) {
     var id = e.currentTarget.id
-    console.log('id:', id)
     var orderReceived = this.data.orderReceivedList[id]
-    wx.setStorageSync('orderReceivedDetail', orderReceived)
+    var legworkId = orderReceived.id
     wx.navigateTo({
-      url: '../orderProgress/orderProgress'
+      url: '../orderProgress/orderProgress?legworkId=' + legworkId
     })
   },
 
@@ -116,7 +116,6 @@ Page({
   order: function(e) {
     var id = e.currentTarget.id
     var orderReceived = this.data.orderReceivedList[id]
-    var { buyerId } = this.data.buyerId
     wx.showModal({
       content: '本次所有商品已经和客服沟通,确定要结束采购流程嘛？',
       success: (res) => {
@@ -201,6 +200,8 @@ function getOrderReceivedList() {
         orderReceivedList.forEach(element => {
           element.status = true
           element.createTime = utils.formatDateNoSecond(element.createTime);
+          element.waitDay = parseInt(element.waitTime / 24)
+          element.waitHour = element.waitTime - element.waitDay * 24
           if (element.nickName) {
             element.nickName = element.nickName.substring(0, 1) + '**' + element.nickName.substring(element.nickName.length - 2, element.nickName.length - 1)
           } else {
@@ -234,6 +235,7 @@ function buyFinish(legworkId) {
           title: '采购成功',
           icon: 'none'
         })
+        getOrderReceivedList.call(that)
       } else {
         wx.showModal({
           title: '提示',
@@ -253,7 +255,7 @@ function buyGoods(scheduleUrl, productId, legworkId, note) {
     method: 'post',
     data:{
       scheduleUrl: scheduleUrl,
-      productId: parseInt(productId),
+      productId: Number(productId),
       legworkId: legworkId,
       note: note
     },
@@ -264,6 +266,9 @@ function buyGoods(scheduleUrl, productId, legworkId, note) {
         })
         wx.showTabBar();
         getOrderReceivedList.call(that);
+        that.setData({
+          scheduleUrl:''
+        })
       }
     }
   })
@@ -272,7 +277,6 @@ function buyGoods(scheduleUrl, productId, legworkId, note) {
 //上传图片获取scheduleUrl
 function uploadImg (imgUrl){
   var that = this
-  console.log('this:', this)
   wx.uploadFile({
     url: cfg.localUrl + 'legworkBuyer/fileUplode',
     filePath: imgUrl,
